@@ -102,6 +102,9 @@ Designed, engineered, and deployed single-handedly:
 * **Himanshi Sharma** – *Lead Developer & Architect*
   * 🌐 **GitHub:** [@himanshisharma18-wq](https://github.com/himanshisharma18-wq)
   * 💼 **LinkedIn:** [Connect on LinkedIn](https://www.linkedin.com/in/himanshi-sharma-wq) 
+
+  
+
  
 ---
 
@@ -128,8 +131,3 @@ npm start
 # Server runs at http://localhost:3000
 4. Launch Frontend
 Open index.html or ngo_dashboad.html directly in your browser or through VS Code Live Server.
-
-🙏 Acknowledgment & Conclusion
-"Technology is best when it brings people together to solve real-world human problems."
-
-Thank you for exploring SevaLink. This project represents a dedication to building scalable, high-impact technical solutions that bridge social inequality. If you have any feedback, collaboration proposals, or feedback on the architecture, feel free to reach out or connect!
