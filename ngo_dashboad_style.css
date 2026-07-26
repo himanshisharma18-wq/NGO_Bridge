@@ -361,3 +361,26 @@ header {
 .need-row { padding: 15px 0; border-bottom: 1px solid #ddd; width: 100%; }
 .need-header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
 .details-box { display: none; width: 100%; margin-top: 15px; padding: 15px; background: #f4f7f6; border-radius: 6px; border-left: 5px solid #007bff; white-space: pre-wrap; box-sizing: border-box; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.need-row { padding: 15px 0; border-bottom: 1px solid #ddd; width: 100%; }
+.need-header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.details-box { display: none; width: 100%; margin-top: 15px; padding: 15px; background: #f4f7f6; border-radius: 6px; border-left: 5px solid #007bff; white-space: pre-wrap; box-sizing: border-box; }
