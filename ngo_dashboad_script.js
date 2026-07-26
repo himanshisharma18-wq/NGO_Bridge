@@ -1,12 +1,4 @@
-// --- Required CSS (Add this to your style.css file) ---
-/*
-.need-row { padding: 15px 0; border-bottom: 1px solid #ddd; width: 100%; }
-.need-header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-.details-box { display: none; width: 100%; margin-top: 15px; padding: 15px; background: #f4f7f6; border-radius: 6px; border-left: 5px solid #007bff; white-space: pre-wrap; box-sizing: border-box; }
-*/
-
 // --- Dynamic API Endpoint URL ---
-// Automatically switches between Localhost (for local development) and Render (for production)
 const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
     ? 'http://localhost:3000'
     : 'https://ngo-bridge.onrender.com';
@@ -18,8 +10,7 @@ let needs = [
 ];
 let currentEditId = null;
 
-// --- Global Helper Functions ---
-
+// --- Global Helper Functions (Exposed to window for inline onclick attributes) ---
 window.toggleDetails = (id) => {
     const detailsDiv = document.getElementById('details-' + id);
     if (detailsDiv) {
@@ -31,29 +22,32 @@ window.openEdit = (id) => {
     currentEditId = id;
     const need = needs.find(n => n.id === id);
     const editInput = document.getElementById('editInput');
-    if (editInput && need) {
+    const editModal = document.getElementById('editModal');
+    if (editInput && need && editModal) {
         editInput.value = need.title;
-        document.getElementById('editModal').style.display = 'flex';
+        editModal.style.display = 'flex';
     }
 };
 
 window.closeModal = () => {
-    document.getElementById('editModal').style.display = 'none';
+    const editModal = document.getElementById('editModal');
+    if (editModal) editModal.style.display = 'none';
 };
 
 window.saveEdit = () => {
     const need = needs.find(n => n.id === currentEditId);
-    if (need) {
-        need.title = document.getElementById('editInput').value;
-        window.render(); 
+    const editInput = document.getElementById('editInput');
+    if (need && editInput) {
+        need.title = editInput.value;
+        if (typeof window.render === 'function') window.render(); 
         window.closeModal();
     }
 };
 
-// --- Main App Logic ---
+// --- Page Initialization ---
 document.addEventListener("DOMContentLoaded", () => {
     
-    // The Render function: This builds the list dynamically
+    // Render Function: Renders the active needs list
     function render() {
         const list = document.getElementById('needsList');
         const count = document.getElementById('activeCount');
@@ -61,12 +55,10 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (list) {
             list.innerHTML = '';
-
             needs.forEach(need => {
                 const div = document.createElement('div');
                 div.className = 'need-row'; 
                 
-                // The HTML structure is now strictly Header (Flex) + Details (Block)
                 div.innerHTML = `
                     <div class="need-header">
                         <div class="need-details">
@@ -88,16 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Expose render to the global scope
+    // Expose render function globally
     window.render = render; 
 
-    // --- Generate Button ---
+    // --- Generate Button (Gemini AI Integration) ---
     const generateBtn = document.getElementById('generateBtn');
     if (generateBtn) {
         generateBtn.onclick = async () => {
             const inputField = document.getElementById("missionInput");
             const statusMsg = document.getElementById('statusMessage');
-            const promptText = inputField.value.trim();
+            const promptText = inputField ? inputField.value.trim() : "";
 
             if (!promptText) return alert("Please describe your need first!");
 
@@ -107,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
             try {
-                // Dynamically uses API_BASE_URL (http://localhost:3000 or https://ngo-bridge.onrender.com)
                 const response = await fetch(`${API_BASE_URL}/api/generate`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -116,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const data = await response.json();
                 if (response.ok && data.text) {
-                    inputField.value = data.text.trim();
+                    if (inputField) inputField.value = data.text.trim();
                     if (statusMsg) {
                         statusMsg.innerText = "✅ Generated!";
                         statusMsg.style.color = "green";
@@ -139,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (postFinalBtn) {
         postFinalBtn.onclick = () => {
             const inputField = document.getElementById("missionInput");
-            const fullText = inputField.value.trim();
+            const fullText = inputField ? inputField.value.trim() : "";
             
             if (!fullText) return alert("Generate a post first!");
 
@@ -150,10 +141,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 applicants: 0
             });
             
-            render(); // Re-render the list
-            inputField.value = ''; 
+            render(); 
+            if (inputField) inputField.value = ''; 
         };
     }
 
-    render(); // Initial call
+    render(); // Run initial render on page load
 });
