@@ -4,6 +4,10 @@ require('dotenv').config();
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
+
+app.get('/', (req, res) => {
+    res.send("NGO Bridge API Server is running!");
+});
 app.use(cors());
 app.use(express.json());
 
