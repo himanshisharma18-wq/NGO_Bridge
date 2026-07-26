@@ -1,5 +1,5 @@
 # 🚀 SevaLink | Smart Resource Allocation Engine
-🔗 Video Demo: Watch the Walkthrough on Google Drive
+
 [![Live Demo](https://img.shields.io/badge/Demo-Live_Prototype-brightgreen?style=for-the-badge&logo=github)](https://himanshisharma18-wq.github.io/NGO_Bridge/)
 [![Backend Status](https://img.shields.io/badge/Render_API-Active-blue?style=for-the-badge&logo=render)](https://ngo-bridge.onrender.com)
 [![Google Solution Challenge](https://img.shields.io/badge/Google_Solution_Challenge-2026-4285F4?style=for-the-badge&logo=google)](https://developers.google.com/community/gdsc-solution-challenge)
@@ -20,7 +20,7 @@ SevaLink bridges the gap between **Data Collection** and **Field Action** by dig
 
 ## 🎥 Demonstration & Links
 
-🔗 Video Demo: Watch the Walkthrough on Google Drive
+
 * 🌐 **Live Application:** [SevaLink Web Client](https://himanshisharma18-wq.github.io/NGO_Bridge/)
 * ⚡ **Deployed Backend API:** [Render API Endpoint](https://ngo-bridge.onrender.com)
 * 📹 **Video Walkthrough:** [Watch Demo on Google Drive](https://drive.google.com/file/d/1t2MC_Y4PiUfY-xiaDBSa9jqsP_fwuxKv/view?usp=drivesdk)
