@@ -1,8 +1,4 @@
-// --- Dynamic API Endpoint URL ---
-const API_BASE_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? 'http://localhost:3000'
-    : 'https://ngo-bridge.onrender.com';
-
+const API_BASE_URL = 'https://ngo-bridge.onrender.com';
 // --- Global State ---
 let needs = [
     { id: 1, title: 'Food Drive – Delhi', fullDescription: 'Full description of Food Drive – Delhi...', applicants: 5 },
